@@ -123,7 +123,7 @@ export default function App() {
         .faq-item{border:1px solid ${borderLight};border-radius:14px;overflow:hidden;transition:all .3s;cursor:pointer;background:#fff}
         .faq-item:hover{border-color:rgba(0,168,107,.2)}
         .urgency-bar{background:linear-gradient(90deg,#B91C1C,#DC2626);color:#fff;text-align:center;padding:12px 24px;font-size:13px;font-weight:600;letter-spacing:.3px}
-        @media(max-width:900px){.grid-2{grid-template-columns:1fr!important}.grid-3{grid-template-columns:1fr!important}.grid-4{grid-template-columns:repeat(2,1fr)!important}.nav-links{display:none!important}}
+        @media(max-width:900px){.grid-2{grid-template-columns:1fr!important}[data-section="ctrl"]>div{grid-template-columns:1fr!important}.grid-3{grid-template-columns:1fr!important}.grid-4{grid-template-columns:repeat(2,1fr)!important}.nav-links{display:none!important}}
       `}</style>
 
       {/* URGENCY BAR */}
@@ -137,6 +137,7 @@ export default function App() {
           <img src="./logo-nav.png" alt="Acciseo" style={{ height:32 }}/>
           <div className="nav-links" style={{ display:"flex",gap:28,alignItems:"center" }}>
             {["Services","Simulateur","FAQ","Contact"].map(t => <a key={t} href={`#${t.toLowerCase()}`} style={{ color:textSecondary,fontSize:13,textDecoration:"none",fontWeight:500 }}>{t}</a>)}
+            <a href="./controle" style={{ color:accent,fontSize:13,textDecoration:"none",fontWeight:600 }}>Contrôle 2024</a>
             <a href="tel:0614595701" style={{ display:"flex",alignItems:"center",gap:6,color:navy,fontSize:13,fontWeight:600,textDecoration:"none" }}><Icon type="phone" size={14} color={navy}/>06 14 59 57 01</a>
             <a href="#contact"><button className="btn-accent" style={{ padding:"10px 28px",fontSize:13 }}>Diagnostic gratuit</button></a>
           </div>
@@ -149,6 +150,7 @@ export default function App() {
         {menuOpen && (
           <div className="mobile-menu" style={{ flexDirection:"column",gap:4,padding:"12px 0 20px",borderTop:`1px solid ${borderLight}` }}>
             {["Services","Simulateur","FAQ","Contact"].map(t => <a key={t} href={`#${t.toLowerCase()}`} onClick={() => setMenuOpen(false)} style={{ color:navy,fontSize:16,fontWeight:600,textDecoration:"none",padding:"12px 4px" }}>{t}</a>)}
+            <a href="./controle" style={{ color:accent,fontSize:16,fontWeight:600,textDecoration:"none",padding:"12px 4px" }}>Contrôle 2024</a>
             <a href="tel:0614595701" style={{ display:"flex",alignItems:"center",gap:8,color:navy,fontSize:16,fontWeight:600,textDecoration:"none",padding:"12px 4px" }}><Icon type="phone" size={16} color={accent}/>06 14 59 57 01</a>
             <a href="#contact" onClick={() => setMenuOpen(false)} style={{ marginTop:8 }}><button className="btn-accent" style={{ width:"100%",padding:"14px 28px",fontSize:15 }}>Diagnostic gratuit</button></a>
           </div>
@@ -208,7 +210,7 @@ export default function App() {
       {/* TRUST BAR */}
       <div style={{ borderTop:`1px solid ${borderLight}`,borderBottom:`1px solid ${borderLight}`,padding:"18px 32px",overflow:"hidden" }}>
         <div className="marquee">
-          {[...Array(2)].flatMap((_,i) => ["Conforme DGFiP / DGDDI","Portail SIDECAR Web","Art. L.312-53 du CIBS","Formulaire 3310-TIC-SD","Commission au succès","Diagnostic en 48h","SIRET 105 464 259 00016"].map((t,j) => (
+          {[...Array(2)].flatMap((_,i) => ["Conforme DGFiP / DGDDI","Portail SIDECAR Web","Art. L.312-53 du CIBS","Formulaire 3310-TIC-SD","Indices CNR","Commission au succès","Diagnostic en 48h","SIRET 105 464 259 00016"].map((t,j) => (
             <span key={`${i}-${j}`} style={{ whiteSpace:"nowrap",fontSize:12,color:textSecondary,fontWeight:500,display:"flex",alignItems:"center",gap:8 }}>
               <span style={{ width:5,height:5,borderRadius:"50%",background:accent,opacity:.5 }}/>{t}
             </span>
@@ -270,8 +272,8 @@ export default function App() {
           <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(320px,1fr))",gap:20 }}>
             {[
               { tag:"Prioritaire",title:"Rattrapage TICPE 2023–2024",desc:"Les consommations non réclamées des deux dernières années représentent un capital dormant. Nous constituons le dossier complet et déposons la demande sur SIDECAR Web avant la date limite de prescription.",icon:"refresh",accent:accent,num:"01" },
-              { tag:"Récurrent",title:"Gestion semestrielle",desc:"Extraction des volumes par véhicule, croisement avec vos cartes grises, ventilation régionale conforme, préparation de l'état récapitulatif annuel (ERA). Vous n'y pensez plus.",icon:"calendar",accent:"#2E6BC6",num:"02" },
-              { tag:"Expertise",title:"Accises alcool — export",desc:"Vous exportez des produits soumis à accise ? Nous gérons le remboursement des droits à l'export avec la même rigueur et la même rémunération au succès.",icon:"building",accent:"#7B5EA7",num:"03" },
+              { tag:"Récurrent",title:"Gestion TICPE courante",desc:"Extraction des volumes par véhicule, croisement avec vos cartes grises, ventilation régionale, préparation de l'ERA. Dépôt mensuel, trimestriel ou annuel auprès de la DGFiP. Vous n'y pensez plus, l'argent revient.",icon:"calendar",accent:"#2E6BC6",num:"02" },
+              { tag:"Nouveau · récurrent",title:"Indexation carburant",desc:"Chaque contrat de transport doit répercuter la variation du prix du gazole (indices CNR). Nous vérifions que vos factures appliquent le bon indice — renommé en janvier 2026 — et calculons le montant exact chaque mois. Forfait mensuel, indépendant de tout remboursement.",icon:"chart",accent:"#7B5EA7",num:"03" },
             ].map((s,i) => (
               <div key={s.title} className={`service-card ${R("services")}`} style={{ transitionDelay:`${i*.1+.1}s` }}>
                 <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20 }}>
@@ -354,7 +356,24 @@ export default function App() {
                 <div className="serif" style={{ fontSize:32,color:"#F09595" }}>{formatEuro(simulTICPE * 2)}</div>
               </div>
             </div>
-            <p style={{ fontSize:11,color:"rgba(255,255,255,.15)",marginTop:20 }}>*Estimation : 33 000 L/an/camion, taux moyen pondéré. Résultat indicatif, diagnostic personnalisé sur demande.</p>
+            <p style={{ fontSize:11,color:"rgba(255,255,255,.15)",marginTop:20 }}>*Estimation marchandises : 33 000 L/an/camion, taux moyen pondéré 2024. Autocariste ou déjà remboursé ? Utilisez le Contrôle 2024, plus précis.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* DEJA RECLAME → CONTROLE */}
+      <section data-section="ctrl" style={{ padding:"0 32px 100px",maxWidth:1120,margin:"0 auto" }}>
+        <div className={R("ctrl","d1")} style={{ background:warmBg,border:`1px solid ${borderLight}`,borderRadius:24,padding:"44px 40px",display:"grid",gridTemplateColumns:"1.4fr 1fr",gap:40,alignItems:"center" }}>
+          <div>
+            <span className="section-label">Vous réclamez déjà votre TICPE ?</span>
+            <h3 className="serif" style={{ fontSize:30,color:navy,lineHeight:1.2,marginBottom:14 }}>Vérifiez qu'il ne manque rien — en 2 minutes.</h3>
+            <p className="body-serif" style={{ fontSize:15,color:textSecondary,lineHeight:1.75 }}>
+              La majorité des dossiers que nous auditons sont incomplets : majoration Île-de-France non ventilée, véhicules en location oubliés, semestre manquant. Comparez ce que vous avez reçu à ce qui vous est dû.
+            </p>
+          </div>
+          <div style={{ textAlign:"center" }}>
+            <a href="./controle" style={{ textDecoration:"none" }}><button className="btn-accent" style={{ width:"100%" }}>Lancer le contrôle gratuit<span className="arr">→</span></button></a>
+            <div className="mono" style={{ fontSize:11,color:textSecondary,marginTop:12 }}>SANS INSCRIPTION · SANS ENGAGEMENT</div>
           </div>
         </div>
       </section>
@@ -367,10 +386,10 @@ export default function App() {
         </div>
         <div className="grid-4" style={{ display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:20 }}>
           {[
-            { icon:"truck",label:"Transport de marchandises",sub:"Véhicules > 7,5t PTAC" },
-            { icon:"bus",label:"Transport de voyageurs",sub:"Autocars, bus" },
-            { icon:"car",label:"Taxis",sub:"Gazole et essence" },
-            { icon:"hardhat",label:"BTP et engins",sub:"Véhicules routiers éligibles" },
+            { icon:"truck",label:"Transport de marchandises",sub:"PL ≥ 7,5 t · 15,56 à 17,45 €/hl (2024)" },
+            { icon:"bus",label:"Transport de voyageurs",sub:"Autocars > 9 places · 21,56 à 23,45 €/hl — le taux le plus élevé" },
+            { icon:"car",label:"Taxis",sub:"Gazole et essence · régime spécifique" },
+            { icon:"hardhat",label:"BTP et engins",sub:"Véhicules routiers de transport éligibles" },
           ].map((c,i) => (
             <div key={c.label} className={R("elig")} style={{ transitionDelay:`${i*.1+.1}s`,textAlign:"center",padding:"36px 20px",borderRadius:20,background:warmBg,border:`1px solid ${borderLight}` }}>
               <div className="icon-circle" style={{ background:accentSoft,margin:"0 auto 16px" }}><Icon type={c.icon} size={24} color={accent}/></div>
@@ -417,7 +436,7 @@ export default function App() {
         <h2 className={`${R("cab","d2")} serif`} style={{ fontSize:34,color:navy,marginBottom:24 }}>Une spécialisation, pas un catalogue.</h2>
         <p className={`${R("cab","d3")} body-serif`} style={{ fontSize:16.5,color:textSecondary,lineHeight:1.9,maxWidth:680,margin:"0 auto 32px" }}>
           Acciseo est un cabinet indépendant fondé par un professionnel de la fiscalité indirecte,
-          spécialisé exclusivement dans les droits d'accise — carburants et alcools.
+          spécialisé exclusivement dans la trésorerie carburant des transporteurs — remboursement d'accise sur le gazole et indexation carburant.
           Notre conviction : la récupération d'accises exige une précision que les généralistes
           ne peuvent pas offrir. Chaque dossier est traité ligne par ligne, du relevé de carte carburant
           jusqu'au dépôt administratif, avec une traçabilité complète en cas de contrôle.
@@ -439,10 +458,13 @@ export default function App() {
           {[
             { q:"C'est légal ? L'État rembourse vraiment ?",a:"Oui. Le remboursement partiel d'accise sur le gazole professionnel est prévu par l'article L.312-53 du Code des impositions sur les biens et services (CIBS). C'est un droit, pas une faveur. Les demandes sont déposées via SIDECAR Web (portail officiel de la DGDDI) ou via la déclaration de TVA (formulaire 3310-TIC-SD)." },
             { q:"Combien ça coûte ?",a:"Aucun frais d'avance. Notre rémunération est un pourcentage du montant effectivement remboursé par l'État. Si nous ne récupérons rien, vous ne payez rien." },
-            { q:"Mon comptable ne le fait pas déjà ?",a:"Dans la majorité des cas, les experts-comptables ne traitent pas les dossiers TICPE car ce n'est pas leur spécialité : tri des factures ligne par ligne, croisement carte-véhicule, ventilation régionale. Nous travaillons en complémentarité avec votre comptable." },
+            { q:"Mon comptable ne le fait pas déjà ?",a:"Dans la majorité des cas, les experts-comptables ne traitent pas les dossiers TICPE car ce n'est pas leur spécialité : tri des factures ligne par ligne, croisement carte-véhicule, ventilation régionale. Nous travaillons en complémentarité avec votre comptable — et vous pouvez vérifier en deux minutes si votre dossier est complet sur la page Contrôle 2024." },
             { q:"De quels documents avez-vous besoin ?",a:"Vos factures carburant (BTF, Total, AS24, DKV...) et les copies des cartes grises de vos véhicules de plus de 7,5 tonnes. C'est tout." },
             { q:"Combien de temps prend le remboursement ?",a:"Le diagnostic est réalisé en 48 heures. Le dépôt du dossier prend 1 à 2 semaines. Le remboursement par l'État intervient généralement sous 1 à 3 mois après le dépôt." },
             { q:"J'ai oublié de réclamer les années précédentes, c'est trop tard ?",a:"La prescription est de 2 ans. Les consommations 2024 sont réclamables jusqu'au 31 décembre 2026. Au-delà, l'argent est définitivement perdu — c'est pourquoi le rattrapage est notre service prioritaire." },
+            { q:"Je suis autocariste, suis-je concerné ?",a:"Oui, et votre taux est plus élevé que celui des transporteurs de marchandises : 21,56 €/hl hors Île-de-France et 23,45 €/hl en Île-de-France sur 2024-2025 (art. L.312-51 du CIBS), pour les véhicules de plus de 9 places. Un autocariste de 20 cars qui n'a jamais réclamé laisse plus d'argent qu'un transporteur de 20 camions." },
+            { q:"Qu'est-ce qui change en 2026 ?",a:"Depuis le 1er janvier 2026, la majoration Île-de-France disparaît : le taux IDF s'aligne sur les autres régions (15,56 €/hl marchandises, 21,56 €/hl voyageurs), seule la Corse garde un taux distinct, et le tarif forfaitaire pondéré est supprimé. Les demandes sur les consommations 2025 et suivantes se déposent auprès de la DGFiP, celles de 2024 restent sur SIDECAR Web jusqu'au 31 décembre 2026." },
+            { q:"C'est quoi l'indexation carburant ?",a:"Une obligation légale : tout contrat de transport routier doit prévoir la répercussion de la variation du prix du gazole, sur la base d'un indice de référence (indices CNR). Depuis janvier 2026, trois séries ont été arrêtées et l'indice standard a été renommé. Nous vérifions que vos factures appliquent le bon indice et calculons le montant exact chaque mois. Nous ne rédigeons pas vos contrats — c'est du conseil juridique — nous vérifions et nous calculons." },
           ].map((item,i) => (
             <div key={i} className="faq-item" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
               <div style={{ padding:"18px 24px",display:"flex",justifyContent:"space-between",alignItems:"center" }}>
@@ -485,7 +507,6 @@ export default function App() {
                   <option>Transport de voyageurs</option>
                   <option>Taxi</option>
                   <option>BTP</option>
-                  <option>Export alcool</option>
                   <option>Autre</option>
                 </select>
               </div>
@@ -511,8 +532,8 @@ export default function App() {
             <div>
               <img src="./logo-footer.png" alt="Acciseo" style={{ height:28,marginBottom:16 }}/>
               <p style={{ fontSize:13,color:textSecondary,lineHeight:1.7,maxWidth:300 }}>
-                Cabinet spécialisé dans le remboursement d'accises sur les produits énergétiques.
-                Nous accompagnons les transporteurs routiers dans la récupération de leur TICPE.
+                Cabinet spécialisé dans la trésorerie carburant des transporteurs routiers :
+                remboursement d'accise sur le gazole (TICPE) et indexation carburant.
               </p>
             </div>
             <div>
